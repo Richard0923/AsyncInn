@@ -14,10 +14,12 @@ namespace AsyncInn
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
 
+        //sets up depencies injection 
         public Startup(IConfiguration configuration)
         {
-
+            Configuration = configuration;
         }
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
@@ -25,7 +27,7 @@ namespace AsyncInn
         {
             //adds MVC into the web application 
             services.AddMvc();
-
+            //adds DBContext and the file to look at 
             services.AddDbContext<AsyncInnDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
             );
