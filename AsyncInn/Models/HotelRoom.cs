@@ -17,7 +17,7 @@ namespace AsyncInn.Models
 
         public bool PetFriendly { get; set; }
 
-        public ICollection<Room> Room { get; set; }
+        public Room Room { get; set; }
 
         public Hotel Hotel { get; set; }
 

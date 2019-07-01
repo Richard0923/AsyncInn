@@ -34,7 +34,7 @@ namespace AsyncInn.Controllers
             }
 
             var hotel = await _context.Hotels
-                .FirstOrDefaultAsync(m => m.HotelID == id);
+                .FirstOrDefaultAsync(m => m.ID == id);
             if (hotel == null)
             {
                 return NotFound();
@@ -54,7 +54,7 @@ namespace AsyncInn.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("HotelID,Name,City,State,Phone")] Hotel hotel)
+        public async Task<IActionResult> Create([Bind("ID,Name,City,State,Phone")] Hotel hotel)
         {
             if (ModelState.IsValid)
             {
@@ -86,9 +86,9 @@ namespace AsyncInn.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("HotelID,Name,City,State,Phone")] Hotel hotel)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,City,State,Phone")] Hotel hotel)
         {
-            if (id != hotel.HotelID)
+            if (id != hotel.ID)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace AsyncInn.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!HotelExists(hotel.HotelID))
+                    if (!HotelExists(hotel.ID))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace AsyncInn.Controllers
             }
 
             var hotel = await _context.Hotels
-                .FirstOrDefaultAsync(m => m.HotelID == id);
+                .FirstOrDefaultAsync(m => m.ID == id);
             if (hotel == null)
             {
                 return NotFound();
@@ -147,7 +147,7 @@ namespace AsyncInn.Controllers
 
         private bool HotelExists(int id)
         {
-            return _context.Hotels.Any(e => e.HotelID == id);
+            return _context.Hotels.Any(e => e.ID == id);
         }
     }
 }

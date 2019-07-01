@@ -34,7 +34,7 @@ namespace AsyncInn.Controllers
             }
 
             var room = await _context.Rooms
-                .FirstOrDefaultAsync(m => m.RoomID == id);
+                .FirstOrDefaultAsync(m => m.ID == id);
             if (room == null)
             {
                 return NotFound();
@@ -54,7 +54,7 @@ namespace AsyncInn.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("RoomID,Name,Layout")] Room room)
+        public async Task<IActionResult> Create([Bind("ID,Name,Layout")] Room room)
         {
             if (ModelState.IsValid)
             {
@@ -86,9 +86,9 @@ namespace AsyncInn.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("RoomID,Name,Layout")] Room room)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Layout")] Room room)
         {
-            if (id != room.RoomID)
+            if (id != room.ID)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace AsyncInn.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!RoomExists(room.RoomID))
+                    if (!RoomExists(room.ID))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace AsyncInn.Controllers
             }
 
             var room = await _context.Rooms
-                .FirstOrDefaultAsync(m => m.RoomID == id);
+                .FirstOrDefaultAsync(m => m.ID == id);
             if (room == null)
             {
                 return NotFound();
@@ -147,7 +147,7 @@ namespace AsyncInn.Controllers
 
         private bool RoomExists(int id)
         {
-            return _context.Rooms.Any(e => e.RoomID == id);
+            return _context.Rooms.Any(e => e.ID == id);
         }
     }
 }

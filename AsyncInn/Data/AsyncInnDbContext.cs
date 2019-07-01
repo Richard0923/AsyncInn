@@ -26,7 +26,7 @@ namespace AsyncInn.Data
             modelBuilder.Entity<Hotel>().HasData(
                 new Hotel
                 {
-                    HotelID = 1,
+                    ID = 1,
                     Name = "The Sound",
                     City = "Seattle",
                     State = "WA",
@@ -34,7 +34,7 @@ namespace AsyncInn.Data
                 },
                 new Hotel
                 {
-                    HotelID = 2,
+                    ID = 2,
                     Name = "South Beach",
                     City = "Miami",
                     State = "FL",
@@ -42,7 +42,7 @@ namespace AsyncInn.Data
                 },
                 new Hotel
                 {
-                    HotelID = 3,
+                    ID = 3,
                     Name = "La Isla",
                     City = "Arecibo ",
                     State = "PR",
@@ -50,7 +50,7 @@ namespace AsyncInn.Data
                 },
                 new Hotel
                 {
-                    HotelID = 4,
+                    ID = 4,
                     Name = "Empire",
                     City = "New York City ",
                     State = "NY",
@@ -58,7 +58,7 @@ namespace AsyncInn.Data
                 },
                 new Hotel
                 {
-                    HotelID = 5,
+                    ID = 5,
                     Name = "LA",
                     City = "Los Angeles",
                     State = "CA",
@@ -70,37 +70,37 @@ namespace AsyncInn.Data
             modelBuilder.Entity<Room>().HasData(
                 new Room
                 {
-                    RoomID = 1,
+                    ID = 1,
                     Name = "Bathroom Not Included",
                     Layout = Layout.Studio,
                 },
                 new Room
                 {
-                    RoomID = 2,
+                    ID = 2,
                     Name = "One Bed No Windows",
                     Layout = Layout.OneBedRoom,
                 },
                 new Room
                 {
-                    RoomID = 3,
+                    ID = 3,
                     Name = "Two Bed and 3 Squatters",
                     Layout = Layout.TwoBedRoom,
                 },
                 new Room
                 {
-                    RoomID = 4,
+                    ID = 4,
                     Name = "Almost a Room",
                     Layout = Layout.Studio,
                 },
                 new Room
                 {
-                    RoomID = 5,
+                    ID = 5,
                     Name = "One bedroom rats included",
                     Layout = Layout.OneBedRoom,
                 },
                 new Room
                 {
-                    RoomID = 6,
+                    ID = 6,
                     Name = "A Suite but without the sweetness",
                     Layout = Layout.TwoBedRoom,
                 }
