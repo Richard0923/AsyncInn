@@ -27,17 +27,17 @@ namespace AsyncInn.Controllers
         }
 
         // GET: HotelRooms/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int roomID, int hotelID)
         {
-            if (id == null)
+            if (roomID == 0 || hotelID == 0)
             {
                 return NotFound();
             }
 
-            var hotelRoom = await _context.HotelRooms
+            HotelRoom hotelRoom = await _context.HotelRooms
                 .Include(h => h.Hotel)
                 .Include(h => h.Room)
-                .FirstOrDefaultAsync(m => m.RoomID == id);
+                .FirstOrDefaultAsync(m => m.RoomID == roomID && m.HotelID == hotelID);
             if (hotelRoom == null)
             {
                 return NotFound();
@@ -73,14 +73,14 @@ namespace AsyncInn.Controllers
         }
 
         // GET: HotelRooms/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int roomID, int hotelID)
         {
-            if (id == null)
+            if (roomID == 0 || hotelID == 0)
             {
                 return NotFound();
             }
 
-            var hotelRoom = await _context.HotelRooms.FindAsync(id);
+            var hotelRoom = await _context.HotelRooms.FindAsync(roomID, hotelID);
             if (hotelRoom == null)
             {
                 return NotFound();
@@ -128,9 +128,9 @@ namespace AsyncInn.Controllers
         }
 
         // GET: HotelRooms/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int roomID, int hotelID)
         {
-            if (id == null)
+            if (roomID == 0 || hotelID == 0)
             {
                 return NotFound();
             }
@@ -138,7 +138,7 @@ namespace AsyncInn.Controllers
             var hotelRoom = await _context.HotelRooms
                 .Include(h => h.Hotel)
                 .Include(h => h.Room)
-                .FirstOrDefaultAsync(m => m.RoomID == id);
+                .FirstOrDefaultAsync(m => m.RoomID == roomID && m.HotelID == hotelID);
             if (hotelRoom == null)
             {
                 return NotFound();
@@ -150,9 +150,9 @@ namespace AsyncInn.Controllers
         // POST: HotelRooms/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int roomID, int hotelID)
         {
-            var hotelRoom = await _context.HotelRooms.FindAsync(id);
+            var hotelRoom = await _context.HotelRooms.FindAsync(roomID, hotelID);
             _context.HotelRooms.Remove(hotelRoom);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

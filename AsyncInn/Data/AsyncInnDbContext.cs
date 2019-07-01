@@ -16,11 +16,11 @@ namespace AsyncInn.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //binding composite keys using Fluent API
-            modelBuilder.Entity<RoomAmenities>().HasKey(RoomAmenities =>
-            new { RoomAmenities.RoomID,  RoomAmenities.AmenitiesID });
+            modelBuilder.Entity<RoomAmenities>().HasKey(ra =>
+            new { ra.RoomID,  ra.AmenitiesID });
 
-            modelBuilder.Entity<HotelRoom>().HasKey(hotelRoom =>
-            new { hotelRoom.RoomID, hotelRoom.HotelID });
+            modelBuilder.Entity<HotelRoom>().HasKey(hr =>
+            new { hr.RoomID, hr.HotelID });
 
             //seed the data 
             modelBuilder.Entity<Hotel>().HasData(
