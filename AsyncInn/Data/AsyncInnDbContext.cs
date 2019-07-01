@@ -105,6 +105,34 @@ namespace AsyncInn.Data
                     Layout = Layout.TwoBedRoom,
                 }
                 );
+            //seed data for Amenitites
+            modelBuilder.Entity<Amenities>().HasData(
+                new Amenities
+                {
+                    ID = 1,
+                    Name = "Bathroom"
+                },
+                new Amenities
+                {
+                    ID = 2,
+                    Name = "Hot Tub"
+                },
+                new Amenities
+                {
+                    ID = 3,
+                    Name = "Disco Ball"
+                },
+                new Amenities
+                {
+                    ID = 4,
+                    Name = "Windows"
+                },
+                new Amenities
+                {
+                    ID = 5,
+                    Name = "Rats"
+                }
+                );
         }
 
         //sets up the db so that contextdb can read it 
