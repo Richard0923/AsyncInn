@@ -4,14 +4,16 @@ using AsyncInn.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AsyncInn.Migrations
 {
     [DbContext(typeof(AsyncInnDbContext))]
-    partial class AsyncInnDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190701002424_AddedSeededData")]
+    partial class AddedSeededData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,7 +23,7 @@ namespace AsyncInn.Migrations
 
             modelBuilder.Entity("AsyncInn.Models.Amenities", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("AmenitiesID")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -31,38 +33,11 @@ namespace AsyncInn.Migrations
 
                     b.Property<int?>("RoomAmenitiesRoomID");
 
-                    b.HasKey("ID");
+                    b.HasKey("AmenitiesID");
 
                     b.HasIndex("RoomAmenitiesRoomID", "RoomAmenitiesAmenitiesID");
 
                     b.ToTable("Amenities");
-
-                    b.HasData(
-                        new
-                        {
-                            ID = 1,
-                            Name = "Bathroom"
-                        },
-                        new
-                        {
-                            ID = 2,
-                            Name = "Hot Tub"
-                        },
-                        new
-                        {
-                            ID = 3,
-                            Name = "Disco Ball"
-                        },
-                        new
-                        {
-                            ID = 4,
-                            Name = "Windows"
-                        },
-                        new
-                        {
-                            ID = 5,
-                            Name = "Rats"
-                        });
                 });
 
             modelBuilder.Entity("AsyncInn.Models.Hotel", b =>

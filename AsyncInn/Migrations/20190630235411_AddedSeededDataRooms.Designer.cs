@@ -4,14 +4,16 @@ using AsyncInn.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AsyncInn.Migrations
 {
     [DbContext(typeof(AsyncInnDbContext))]
-    partial class AsyncInnDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190630235411_AddedSeededDataRooms")]
+    partial class AddedSeededDataRooms
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,7 +23,7 @@ namespace AsyncInn.Migrations
 
             modelBuilder.Entity("AsyncInn.Models.Amenities", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("AmenitiesID")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -31,43 +33,16 @@ namespace AsyncInn.Migrations
 
                     b.Property<int?>("RoomAmenitiesRoomID");
 
-                    b.HasKey("ID");
+                    b.HasKey("AmenitiesID");
 
                     b.HasIndex("RoomAmenitiesRoomID", "RoomAmenitiesAmenitiesID");
 
                     b.ToTable("Amenities");
-
-                    b.HasData(
-                        new
-                        {
-                            ID = 1,
-                            Name = "Bathroom"
-                        },
-                        new
-                        {
-                            ID = 2,
-                            Name = "Hot Tub"
-                        },
-                        new
-                        {
-                            ID = 3,
-                            Name = "Disco Ball"
-                        },
-                        new
-                        {
-                            ID = 4,
-                            Name = "Windows"
-                        },
-                        new
-                        {
-                            ID = 5,
-                            Name = "Rats"
-                        });
                 });
 
             modelBuilder.Entity("AsyncInn.Models.Hotel", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("HotelID")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -79,14 +54,14 @@ namespace AsyncInn.Migrations
 
                     b.Property<string>("State");
 
-                    b.HasKey("ID");
+                    b.HasKey("HotelID");
 
                     b.ToTable("Hotels");
 
                     b.HasData(
                         new
                         {
-                            ID = 1,
+                            HotelID = 1,
                             City = "Seattle",
                             Name = "The Sound",
                             Phone = "1234567892",
@@ -94,7 +69,7 @@ namespace AsyncInn.Migrations
                         },
                         new
                         {
-                            ID = 2,
+                            HotelID = 2,
                             City = "Miami",
                             Name = "South Beach",
                             Phone = "7863589847",
@@ -102,7 +77,7 @@ namespace AsyncInn.Migrations
                         },
                         new
                         {
-                            ID = 3,
+                            HotelID = 3,
                             City = "Arecibo ",
                             Name = "La Isla",
                             Phone = "7874567975",
@@ -110,7 +85,7 @@ namespace AsyncInn.Migrations
                         },
                         new
                         {
-                            ID = 4,
+                            HotelID = 4,
                             City = "New York City ",
                             Name = "Empire",
                             Phone = "2829877237",
@@ -118,7 +93,7 @@ namespace AsyncInn.Migrations
                         },
                         new
                         {
-                            ID = 5,
+                            HotelID = 5,
                             City = "Los Angeles",
                             Name = "LA",
                             Phone = "2678365839",
@@ -147,52 +122,58 @@ namespace AsyncInn.Migrations
 
             modelBuilder.Entity("AsyncInn.Models.Room", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("RoomID")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("HotelRoomHotelID");
+
+                    b.Property<int?>("HotelRoomRoomID");
 
                     b.Property<int>("Layout");
 
                     b.Property<string>("Name");
 
-                    b.HasKey("ID");
+                    b.HasKey("RoomID");
+
+                    b.HasIndex("HotelRoomRoomID", "HotelRoomHotelID");
 
                     b.ToTable("Rooms");
 
                     b.HasData(
                         new
                         {
-                            ID = 1,
+                            RoomID = 1,
                             Layout = 0,
                             Name = "Bathroom Not Included"
                         },
                         new
                         {
-                            ID = 2,
+                            RoomID = 2,
                             Layout = 1,
                             Name = "One Bed No Windows"
                         },
                         new
                         {
-                            ID = 3,
+                            RoomID = 3,
                             Layout = 2,
                             Name = "Two Bed and 3 Squatters"
                         },
                         new
                         {
-                            ID = 4,
+                            RoomID = 4,
                             Layout = 0,
                             Name = "Almost a Room"
                         },
                         new
                         {
-                            ID = 5,
+                            RoomID = 5,
                             Layout = 1,
                             Name = "One bedroom rats included"
                         },
                         new
                         {
-                            ID = 6,
+                            RoomID = 6,
                             Layout = 2,
                             Name = "A Suite but without the sweetness"
                         });
@@ -222,11 +203,13 @@ namespace AsyncInn.Migrations
                         .WithMany()
                         .HasForeignKey("HotelID")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
 
-                    b.HasOne("AsyncInn.Models.Room", "Room")
-                        .WithMany("HotelRoom")
-                        .HasForeignKey("RoomID")
-                        .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity("AsyncInn.Models.Room", b =>
+                {
+                    b.HasOne("AsyncInn.Models.HotelRoom", "HotelRoom")
+                        .WithMany("Room")
+                        .HasForeignKey("HotelRoomRoomID", "HotelRoomHotelID");
                 });
 
             modelBuilder.Entity("AsyncInn.Models.RoomAmenities", b =>
