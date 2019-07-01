@@ -4,14 +4,16 @@ using AsyncInn.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AsyncInn.Migrations
 {
     [DbContext(typeof(AsyncInnDbContext))]
-    partial class AsyncInnDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190630232723_AddedSeededDataHotel")]
+    partial class AddedSeededDataHotel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -137,44 +139,6 @@ namespace AsyncInn.Migrations
                     b.HasIndex("HotelRoomRoomID", "HotelRoomHotelID");
 
                     b.ToTable("Rooms");
-
-                    b.HasData(
-                        new
-                        {
-                            RoomID = 1,
-                            Layout = 0,
-                            Name = "Bathroom Not Included"
-                        },
-                        new
-                        {
-                            RoomID = 2,
-                            Layout = 1,
-                            Name = "One Bed No Windows"
-                        },
-                        new
-                        {
-                            RoomID = 3,
-                            Layout = 2,
-                            Name = "Two Bed and 3 Squatters"
-                        },
-                        new
-                        {
-                            RoomID = 4,
-                            Layout = 0,
-                            Name = "Almost a Room"
-                        },
-                        new
-                        {
-                            RoomID = 5,
-                            Layout = 1,
-                            Name = "One bedroom rats included"
-                        },
-                        new
-                        {
-                            RoomID = 6,
-                            Layout = 2,
-                            Name = "A Suite but without the sweetness"
-                        });
                 });
 
             modelBuilder.Entity("AsyncInn.Models.RoomAmenities", b =>
