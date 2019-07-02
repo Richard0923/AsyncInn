@@ -1,5 +1,6 @@
 ﻿using AsyncInn.Data;
 using AsyncInn.Models.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +39,7 @@ namespace AsyncInn.Models.Services
         {
             Hotel hotel = await GetHotelByID(id);
             _context.Hotels.Remove(hotel);
+            await _context.SaveChangesAsync();
         }
 
         /// <summary>
@@ -47,15 +49,24 @@ namespace AsyncInn.Models.Services
         /// <returns>Returns an async task of a Hotel</returns>
         public async Task<Hotel> GetHotelByID(int id) => await _context.Hotels.FindAsync(id);
         
-
-        public List<Hotel> GetHotelList()
+        /// <summary>
+        /// Grabs all the Hotels in the database
+        /// </summary>
+        /// <returns>Returns an async task of a List of hotels inside of the database</returns>
+        public async Task<List<Hotel>> GetHotelList()
         {
-            throw new NotImplementedException();
+            return await _context.Hotels.ToListAsync();
         }
 
-        public void UpdateHotel(Hotel hotel)
+        /// <summary>
+        /// Updates the hotel and save the changes inside of the database.
+        /// </summary>
+        /// <param name="hotel"></param>
+        /// <returns></returns>
+        public async Task UpdateHotel(Hotel hotel)
         {
-            throw new NotImplementedException();
+            _context.Hotels.Update(hotel);
+            await _context.SaveChangesAsync();
         }
     }
 }

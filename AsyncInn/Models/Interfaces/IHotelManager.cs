@@ -14,12 +14,12 @@ namespace AsyncInn.Models.Interfaces
         Task<Hotel> GetHotelByID(int id);
 
         //getall
-        List<Hotel> GetHotelList();
+        Task<List<Hotel>> GetHotelList();
 
         //update 
-        void UpdateHotel(Hotel hotel);
+        Task UpdateHotel(Hotel hotel);
 
         //delete
-        void DeleteHotel(int id);
+        Task DeleteHotel(int id);
     }
 }
