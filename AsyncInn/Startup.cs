@@ -17,21 +17,31 @@ namespace AsyncInn
     public class Startup
     {
         public IConfiguration Configuration { get; }
+        public IHostingEnvironment Environment { get; }
 
         //sets up depencies injection 
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
+        public Startup(IHostingEnvironment environment)
+        {   //Configuration = configuration;
+            Environment = environment;
+            var builder = new ConfigurationBuilder().AddEnvironmentVariables();
+            builder.AddUserSecrets<Startup>();
+            Configuration = builder.Build();
         }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
             //adds MVC into the web application 
             services.AddMvc();
-            //adds DBContext and the file to look at 
+
+            string connectionstring = Environment.IsDevelopment()
+                ? Configuration.GetConnectionString("DefaultConnection")
+                : Configuration.GetConnectionString("ProductionConnection");
+
+            //adds DBContext and the file to look at
             services.AddDbContext<AsyncInnDbContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
+            options.UseSqlServer(connectionstring)
             );
 
             //add the conection from the interface to the class to allow for dependecy injections 
