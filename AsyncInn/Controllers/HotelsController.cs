@@ -13,6 +13,7 @@ namespace AsyncInn.Controllers
 {
     public class HotelsController : Controller
     {
+        //private variable 
         private readonly IHotelManager _context;
 
         public HotelsController(IHotelManager context)
@@ -100,7 +101,7 @@ namespace AsyncInn.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!HotelExists(hotel.ID))
+                    if (HotelExists(hotel.ID) == null)
                     {
                         return NotFound();
                     }

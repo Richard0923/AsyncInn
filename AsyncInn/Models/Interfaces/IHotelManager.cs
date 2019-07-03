@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace AsyncInn.Models.Interfaces
 {
-    interface IHotelManager
+    public interface IHotelManager
     {
-        //create 
+        //creates and saves a new hotel to the database
         Task CreateHotel(Hotel hotel);
 
         //getbyid
