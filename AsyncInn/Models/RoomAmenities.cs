@@ -11,9 +11,9 @@ namespace AsyncInn.Models
 
         public int RoomID { get; set; }
 
+        //sets the Navagation to the other database and sets it as a generic collection
         public Room Room { get; set; }
 
-        //sets the Navagation to the other database and sets it as a generic collection
         public Amenities Amenitites { get; set; }
 
     }

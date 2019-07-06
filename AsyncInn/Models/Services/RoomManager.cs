@@ -42,6 +42,21 @@ namespace AsyncInn.Models.Services
         }
 
         /// <summary>
+        /// Grabs a list of room amenities for the given id  
+        /// </summary>
+        /// <param name="roomID"></param>
+        /// <returns>Returns a list of room amenitites</returns>
+        public async Task<List<RoomAmenities>> GetAmenitiesRoom(int roomID)
+        {
+            var amenity = await _context.RoomAmenities
+                                        .Where(a => a.RoomID == roomID)
+                                        .Include(r => r.Room)
+                                        .Include(a => a.Amenitites)
+                                        .ToListAsync();
+            return amenity;
+        }
+
+        /// <summary>
         /// Gets the room for the id passed 
         /// </summary>
         /// <param name="id"></param>
