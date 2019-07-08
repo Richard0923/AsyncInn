@@ -14,6 +14,7 @@ namespace AsyncInn.Controllers
     public class RoomsController : Controller
     {
         private readonly IRoomManager _context;
+        
 
         public RoomsController(IRoomManager context)
         {
@@ -67,10 +68,13 @@ namespace AsyncInn.Controllers
         // GET: Rooms/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
+            
             if (id == 0)
             {
                 return NotFound();
             }
+
+            
 
             var room = await _context.GetRoomByID(id);
             if (room == null)
