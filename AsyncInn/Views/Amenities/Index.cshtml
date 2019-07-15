@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<AsyncInn.Models.Amenities>
 
 @{
-    Layout = null;
+    Layout = "_Layout";
 }
 
 <!DOCTYPE html>
@@ -14,36 +14,29 @@
 
 </head>
 <body>
-    <div class="Nav">
-        <h1>ASync Inn Hotel Manager</h1>
-        <a class="Nav-1" asp-controller="Hotels">Hotel Page</a>
-        <a class="Nav-2" asp-controller="Rooms">Rooms Page</a>
-        <a class="Nav-3" asp-controller="Amenities">Amenites Page</a>
-        <a class="Nav-4" asp-controller="RoomAmenities">Room Manager</a>
-        <a class="Nav-5" asp-controller="HotelRooms">Hotel Manager</a>
-        <a class="Nav-6" asp-action="Create">Create New</a>
-    </div>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <a asp-action="Create">Create New</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </body>
 </html>

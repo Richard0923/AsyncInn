@@ -46,7 +46,7 @@ namespace XUnitTestProject1
             //setup the call for the mock 
             mock.Setup(r => r.GetRoomByID(id)).ReturnsAsync(roomT);
             var roomController = new RoomsController(mock.Object);
-            var placeholder = roomController;//test is not complete still need to figure out what im testing for 
+            var placeholder = roomController;//test is not complete still need to figure out  
             //act
 
             //assert
