@@ -1,7 +1,7 @@
 ﻿@model AsyncInn.Models.RoomAmenities
 
 @{
-    Layout = null;
+    Layout = "_Layout";
 }
 
 <!DOCTYPE html>
@@ -16,7 +16,7 @@
 <body>
 
 <div>
-    <h4>RoomAmenities</h4>
+    <h4>Room Amenities</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -26,7 +26,7 @@
             @Html.DisplayFor(model => model.Room.Name)
         </dd>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Room.RoomAmenities)
+            @Html.DisplayFor(model => model.Amenitites.ID)
         </dd>
     </dl>
 </div>

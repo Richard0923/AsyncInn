@@ -5,8 +5,12 @@
 ------------------------------
 
 ## Description
-This is a C# web application for Hotel Managing using Sql Server and the Entity FrameWork the Database Schema is show below. 
+
+This is a C# web application for Hotel Managing using Sql Server and the Entity FrameWork giving you the ability to manage Hotels, Rooms, and the Amenities associated to those rooms. 
 ------------------------------
+## Deployment:
+https://asyncinnapp.azurewebsites.net/
+
 
 ## Getting Started
 Clone this repository to your local machine.
@@ -26,8 +30,13 @@ Then select and open ```AsyncInn.sln```
 
 ## Visuals
 
-##### Application Start
+##### Schema
 ![screenshot](/AsyncInn/Assets/AsyncInn2.png)
 
+##### Application Start 
+![screenshot](/AsyncInn/Assets/AsyncInnStart.png)
+
+##### Using the Application
+![screenshot](/AsyncInn/Assets/AsyncInnUsing.png)
 
 ------------------------------
